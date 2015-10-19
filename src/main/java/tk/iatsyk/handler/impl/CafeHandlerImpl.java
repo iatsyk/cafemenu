@@ -1,23 +1,33 @@
-package tk.iatsyk.service.impl;
+package tk.iatsyk.handler.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.iatsyk.dao.CafeDao;
+import tk.iatsyk.entities.Cafe;
+import tk.iatsyk.handler.CafeHandler;
 import tk.iatsyk.repository.CafeRepository;
-import tk.iatsyk.service.CafeService;
 
 /**
  * User: Vova Iatsyk
  * Date: 17.10.2015
  */
 @Service
-public class CafeServiceImpl implements CafeService {
+public class CafeHandlerImpl implements CafeHandler {
 
     @Autowired
     private CafeRepository cafeRepository;
 
+    @Autowired
+    private CafeDao cafeDao;
+
     @Override
     public String getProperties() {
         return cafeRepository.getProperties();
+    }
+
+    @Override
+    public long save(Cafe cafe) {
+        return cafeDao.save(cafe);
     }
 
 }
