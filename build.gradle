@@ -24,4 +24,6 @@ dependencies {
 
     compile("org.hibernate:hibernate-core:$hibernateVersion")
 
+    compile("mysql:mysql-connector-java:5.1.37")
+
 }
