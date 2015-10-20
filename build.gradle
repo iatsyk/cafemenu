@@ -1,7 +1,7 @@
-apply plugin: 'java'
-
 plugins {
-    id "org.liquibase.gradle" version "1.1.1"
+    id 'java'
+    id 'idea'
+    id 'org.liquibase.gradle' version '1.1.1'
 }
 
 repositories {
@@ -9,25 +9,27 @@ repositories {
 }
 
 ext {
-    springVersion = "4.2.2.RELEASE"
-    springBootVersion = "1.2.7.RELEASE"
-    hibernateVersion = "5.0.2.Final"
-    tomcatVersion = "8.0.28"
+    springVersion = '4.2.2.RELEASE'
+    springBootVersion = '1.2.7.RELEASE'
+    hibernateVersion = '5.0.2.Final'
+    tomcatVersion = '8.0.28'
 }
 
 dependencies {
-    compile("org.springframework:spring-core:$springVersion")
-    compile("org.springframework:spring-web:$springVersion")
-    compile("org.springframework:spring-webmvc:$springVersion")
-    compile("org.springframework:spring-orm:$springVersion")
-    compile("org.springframework:spring-jdbc:$springVersion")
+    compile('org.springframework:spring-core:$springVersion')
+    compile('org.springframework:spring-web:$springVersion')
+    compile('org.springframework:spring-webmvc:$springVersion')
+    compile('org.springframework:spring-orm:$springVersion')
+    compile('org.springframework:spring-jdbc:$springVersion')
 
-    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    compile('org.springframework.boot:spring-boot-starter-web:$springBootVersion')
 
-    compile("org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion")
+    compile('org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion')
 
-    compile("org.hibernate:hibernate-core:$hibernateVersion")
+    compile('org.hibernate:hibernate-core:$hibernateVersion')
 
-    compile("mysql:mysql-connector-java:5.1.37")
+    compile('mysql:mysql-connector-java:5.1.37')
+
+}
 
 }
