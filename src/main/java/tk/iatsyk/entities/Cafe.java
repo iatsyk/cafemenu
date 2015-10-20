@@ -7,7 +7,6 @@ import java.io.Serializable;
  * User: Vova Iatsyk
  * Date: 18.10.2015
  */
-//@DynamicUpdate
 @Entity
 @Table(name = "cafe")
 public class Cafe implements Serializable {
@@ -15,7 +14,7 @@ public class Cafe implements Serializable {
     private Long id;
     private String name;
     private String description;
-    private Double attitude;
+    private Double latitude;
     private Double longitude;
 
     @Id
@@ -47,13 +46,13 @@ public class Cafe implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "attitude")
-    public Double getAttitude() {
-        return attitude;
+    @Column(name = "latitude")
+    public Double getLatitude() {
+        return latitude;
     }
 
-    public void setAttitude(Double attitude) {
-        this.attitude = attitude;
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
     @Column(name = "longitude")

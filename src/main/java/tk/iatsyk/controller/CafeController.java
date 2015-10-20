@@ -26,7 +26,7 @@ public class CafeController {
         Cafe cafe = new Cafe();
         cafe.setDescription("desc");
         cafe.setName("name");
-        cafe.setAttitude(46.5);
+        cafe.setLatitude(46.5);
         cafe.setLongitude(30.25);
         Long cafeId = cafeHandler.save(cafe);
         model.addAttribute("invitation", cafeId);
