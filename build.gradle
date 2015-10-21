@@ -8,26 +8,30 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    springVersion = '4.2.2.RELEASE'
-    springBootVersion = '1.2.7.RELEASE'
-    hibernateVersion = '5.0.2.Final'
-    tomcatVersion = '8.0.28'
+dependencies {
+    compile("org.springframework:spring-core:$springVersion")
+    compile("org.springframework:spring-web:$springVersion")
+    compile("org.springframework:spring-webmvc:$springVersion")
+    compile("org.springframework:spring-orm:$springVersion")
+    compile("org.springframework:spring-jdbc:$springVersion")
+
+    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion")
+
+    compile("org.hibernate:hibernate-core:$hibernateVersion")
+
+    compile("mysql:mysql-connector-java:5.1.37")
 }
 
-dependencies {
-    compile('org.springframework:spring-core:$springVersion')
-    compile('org.springframework:spring-web:$springVersion')
-    compile('org.springframework:spring-webmvc:$springVersion')
-    compile('org.springframework:spring-orm:$springVersion')
-    compile('org.springframework:spring-jdbc:$springVersion')
-
-    compile('org.springframework.boot:spring-boot-starter-web:$springBootVersion')
-
-    compile('org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion')
-
-    compile('org.hibernate:hibernate-core:$hibernateVersion')
-
-    compile('mysql:mysql-connector-java:5.1.37')
-
+liquibase {
+    activities {
+        main {
+            changeLogFile 'src/main/resources/db_changelog.xml'
+            url 'jdbc:mysql://localhost:3306/test'
+            username 'root'
+            password 'root'
+        }
+    }
+    runList = 'main'
 }
