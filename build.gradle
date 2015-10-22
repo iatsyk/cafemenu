@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        files 'build/classes/main'
+    }
+    dependencies {
+        classpath("mysql:mysql-connector-java:$mySQLDriverVersion")
+        classpath files('build/classes/main/')
+    }
+}
+
 plugins {
     id 'java'
     id 'idea'
@@ -21,17 +32,23 @@ dependencies {
 
     compile("org.hibernate:hibernate-core:$hibernateVersion")
 
-    compile("mysql:mysql-connector-java:5.1.37")
+    compile("mysql:mysql-connector-java:$mySQLDriverVersion")
+
 }
 
 liquibase {
     activities {
         main {
-            changeLogFile 'src/main/resources/db_changelog.xml'
-            url 'jdbc:mysql://localhost:3306/test'
+            changeLogFile 'src/main/resources/dbchangelog.xml'
+            url 'jdbc:mysql://localhost:3306/cafe'
             username 'root'
             password 'root'
         }
     }
     runList = 'main'
 }
+
+task updateChangeLog(type: Exec) {
+    commandLine 'gradle', 'update'
+}
+updateChangeLog.dependsOn compileJava
