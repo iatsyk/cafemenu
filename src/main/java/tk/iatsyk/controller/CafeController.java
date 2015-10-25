@@ -2,15 +2,15 @@ package tk.iatsyk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tk.iatsyk.entities.Cafe;
 import tk.iatsyk.handler.CafeHandler;
 
+import javax.xml.stream.Location;
+import java.util.List;
+
 @RestController
-@RequestMapping("/")
+@RequestMapping("/services")
 public class CafeController {
 
     @Autowired
@@ -32,7 +32,14 @@ public class CafeController {
         cafe.setName("name");
         cafe.setLatitude(46.5);
         cafe.setLongitude(30.25);
+        cafe.setAddress("Vinnytsia");
         Long cafeId = cafeHandler.save(cafe);
         model.addAttribute("invitation", cafeId);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/cafes")
+    public @ResponseBody
+    List<Cafe> getAllCafes() {
+        return cafeHandler.getAllCafes();
     }
 }

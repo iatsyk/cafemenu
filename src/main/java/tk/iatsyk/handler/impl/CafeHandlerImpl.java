@@ -7,6 +7,8 @@ import tk.iatsyk.entities.Cafe;
 import tk.iatsyk.handler.CafeHandler;
 import tk.iatsyk.repository.CafeRepository;
 
+import java.util.List;
+
 /**
  * User: Vova Iatsyk
  * Date: 17.10.2015
@@ -28,6 +30,11 @@ public class CafeHandlerImpl implements CafeHandler {
     @Override
     public long save(Cafe cafe) {
         return cafeDao.save(cafe);
+    }
+
+    @Override
+    public List<Cafe> getAllCafes() {
+        return cafeDao.getAllCafes();
     }
 
 }

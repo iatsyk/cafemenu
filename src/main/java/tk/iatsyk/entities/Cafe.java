@@ -16,6 +16,7 @@ public class Cafe implements Serializable {
     private String description;
     private Double latitude;
     private Double longitude;
+    private String address;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,5 +63,14 @@ public class Cafe implements Serializable {
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    @Column(name = "address")
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

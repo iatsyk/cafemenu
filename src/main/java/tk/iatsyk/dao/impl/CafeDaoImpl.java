@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import tk.iatsyk.dao.CafeDao;
 import tk.iatsyk.entities.Cafe;
 
+import java.util.List;
+
 /**
  * @author Vova Iatsyk
  *         Date: 10/19/15
@@ -39,6 +41,11 @@ public class CafeDaoImpl implements CafeDao {
     @Override
     public Cafe findById(long cafeId) {
         return hibernateTemplate.get(Cafe.class, cafeId);
+    }
+
+    @Override
+    public List<Cafe> getAllCafes() {
+        return hibernateTemplate.loadAll(Cafe.class);
     }
 
 }

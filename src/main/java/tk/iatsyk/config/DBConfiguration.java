@@ -25,13 +25,13 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class DBConfiguration {
 
-    @Value("${jdbc.driverClassName}")
+    @Value("${jdbcDriverClassName}")
     private String driverClassName;
-    @Value("${jdbc.databaseurl}")
+    @Value("${jdbcDatabaseUrl}")
     private String databaseUrl;
-    @Value("${jdbc.username}")
+    @Value("${jdbcUsername}")
     private String username;
-    @Value("${jdbc.password}")
+    @Value("${jdbcPassword}")
     private String password;
 
     @Value("${hibernate.dialect}")

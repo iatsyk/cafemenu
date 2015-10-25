@@ -36,13 +36,26 @@ dependencies {
 
 }
 
+def loadProperties(String sourceFileName) {
+    def config = new Properties()
+    def propFile = new File(sourceFileName)
+    if (propFile.canRead()) {
+        config.load(new FileInputStream(propFile))
+        for (Map.Entry property in config) {
+            ext[property.key] = property.value;
+        }
+    }
+}
+
+loadProperties 'src/main/resources/jdbc.properties'
+
 liquibase {
     activities {
         main {
-            changeLogFile 'src/main/resources/dbchangelog.xml'
-            url 'jdbc:mysql://localhost:3306/cafe'
-            username 'root'
-            password 'root'
+            changeLogFile liquibaseChangeLogFile
+            url jdbcDatabaseUrl
+            username jdbcUsername
+            password jdbcPassword
         }
     }
     runList = 'main'
