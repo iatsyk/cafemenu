@@ -14,6 +14,7 @@ import java.util.List;
  *         Date: 10/19/15
  */
 @Repository
+@Transactional(readOnly = true)
 public class CafeDaoImpl implements CafeDao {
 
     @Autowired

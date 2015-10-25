@@ -2,6 +2,7 @@ package tk.iatsyk.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * User: Vova Iatsyk

@@ -1,6 +1,7 @@
 package tk.iatsyk.handler.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import tk.iatsyk.dao.CafeDao;
 import tk.iatsyk.entities.Cafe;
@@ -13,7 +14,7 @@ import java.util.List;
  * User: Vova Iatsyk
  * Date: 17.10.2015
  */
-@Service
+@Component
 public class CafeHandlerImpl implements CafeHandler {
 
     @Autowired

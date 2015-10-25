@@ -42,4 +42,5 @@ public class CafeController {
     List<Cafe> getAllCafes() {
         return cafeHandler.getAllCafes();
     }
+
 }

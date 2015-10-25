@@ -45,13 +45,18 @@
         </createTable>
     </changeSet>
     <changeSet author="vovaiatsyk" id="3">
-        <addColumn  tableName="cafe">
+        <addColumn tableName="cafe">
             <column name="address" type="varchar(250)"/>
         </addColumn>
     </changeSet>
     <changeSet author="vovaiatsyk" id="4">
-        <addColumn  tableName="dishes">
+        <addColumn tableName="dishes">
             <column name="currency" type="varchar(10)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="vovaiatsyk" id="5">
+        <addColumn tableName="dishes">
+            <column name="cafe_id" type="BIGINT(20)"/>
         </addColumn>
     </changeSet>
 
