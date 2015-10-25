@@ -1,6 +1,6 @@
 package tk.iatsyk.handler;
 
-import tk.iatsyk.entities.Dishes;
+import tk.iatsyk.entities.representationobjects.DishRO;
 
 import java.util.List;
 
@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface DishesHandler {
 
-    List<Dishes> findAllDishesByCafeId(Long cafeId);
+    List<DishRO> findAllDishesByCafeId(Long cafeId);
 
 }

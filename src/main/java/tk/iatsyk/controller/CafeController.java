@@ -3,10 +3,10 @@ package tk.iatsyk.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import tk.iatsyk.entities.Cafe;
+import tk.iatsyk.entities.businessentities.Cafe;
+import tk.iatsyk.entities.representationobjects.CafeRO;
 import tk.iatsyk.handler.CafeHandler;
 
-import javax.xml.stream.Location;
 import java.util.List;
 
 @RestController
@@ -25,8 +25,8 @@ public class CafeController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/save")
     public
-    @ModelAttribute
-    void save(Model model) {
+    @ResponseBody
+    Long save(Model model) {
         Cafe cafe = new Cafe();
         cafe.setDescription("desc");
         cafe.setName("name");
@@ -34,12 +34,13 @@ public class CafeController {
         cafe.setLongitude(30.25);
         cafe.setAddress("Vinnytsia");
         Long cafeId = cafeHandler.save(cafe);
-        model.addAttribute("invitation", cafeId);
+        return cafeId;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/cafes")
-    public @ResponseBody
-    List<Cafe> getAllCafes() {
+    public
+    @ResponseBody
+    List<CafeRO> getAllCafes() {
         return cafeHandler.getAllCafes();
     }
 

@@ -1,4 +1,4 @@
-package tk.iatsyk.entities;
+package tk.iatsyk.entities.businessentities;
 
 import javax.persistence.*;
 import java.io.Serializable;

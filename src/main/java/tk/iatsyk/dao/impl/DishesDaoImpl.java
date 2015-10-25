@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.iatsyk.dao.DishesDao;
-import tk.iatsyk.entities.Dishes;
+import tk.iatsyk.entities.businessentities.Dish;
+import tk.iatsyk.entities.representationobjects.DishRO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,33 +25,33 @@ public class DishesDaoImpl implements DishesDao {
 
     @Override
     @Transactional(readOnly = false)
-    public long save(Dishes dishes) {
+    public long save(Dish dishes) {
         return (Long) hibernateTemplate.save(dishes);
     }
 
     @Override
     @Transactional(readOnly = false)
-    public void update(Dishes dishes) {
+    public void update(Dish dishes) {
         hibernateTemplate.update(dishes);
     }
 
     @Override
     @Transactional(readOnly = false)
-    public void delete(Dishes dishes) {
+    public void delete(Dish dishes) {
         hibernateTemplate.delete(dishes);
     }
 
     @Override
-    public Dishes findById(long dishesId) {
-        return hibernateTemplate.get(Dishes.class, dishesId);
+    public Dish findById(long dishesId) {
+        return hibernateTemplate.get(Dish.class, dishesId);
     }
 
     @Override
-    public List<Dishes> findAllDishesByCafeId(Long cafeId) {
+    public List<DishRO> findAllDishesByCafeId(Long cafeId) {
         List dishes = hibernateTemplate.findByNamedQueryAndNamedParam("findAllDishesByCafeId", "cafeId", cafeId);
         if (CollectionUtils.isEmpty(dishes)) {
             return new ArrayList<>();
         }
-        return dishes;
+        return DishRO.parseDishes(dishes);
     }
 }

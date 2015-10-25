@@ -1,6 +1,7 @@
 package tk.iatsyk.dao;
 
-import tk.iatsyk.entities.Cafe;
+import tk.iatsyk.entities.businessentities.Cafe;
+import tk.iatsyk.entities.representationobjects.CafeRO;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface CafeDao {
 
     Cafe findById(long cafeId);
 
-    List<Cafe> getAllCafes();
+    List<CafeRO> getAllCafes();
 }

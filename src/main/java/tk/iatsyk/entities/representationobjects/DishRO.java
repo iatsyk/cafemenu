@@ -1,19 +1,15 @@
-package tk.iatsyk.entities;
+package tk.iatsyk.entities.representationobjects;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import tk.iatsyk.entities.businessentities.Dish;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * User: Vova Iatsyk
  * Date: 25.10.2015
  */
-@Entity
-@Table(name = "dishes")
-@NamedQueries({
-        @NamedQuery(name = "findAllDishesByCafeId",
-                query = "SELECT d FROM tk.iatsyk.entities.Dishes d WHERE d.cafeId = :cafeId")
-})
-public class Dishes implements Serializable {
+public class DishRO {
 
     private Long id;
     private String name;
@@ -21,11 +17,7 @@ public class Dishes implements Serializable {
     private Double price;
     private String currency;
     private String picture;
-    private Long cafeId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "uuid")
     public Long getId() {
         return id;
     }
@@ -34,7 +26,6 @@ public class Dishes implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -43,7 +34,6 @@ public class Dishes implements Serializable {
         this.name = name;
     }
 
-    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -52,7 +42,6 @@ public class Dishes implements Serializable {
         this.description = description;
     }
 
-    @Column(name = "price")
     public Double getPrice() {
         return price;
     }
@@ -61,7 +50,6 @@ public class Dishes implements Serializable {
         this.price = price;
     }
 
-    @Column(name = "currency")
     public String getCurrency() {
         return currency;
     }
@@ -70,7 +58,6 @@ public class Dishes implements Serializable {
         this.currency = currency;
     }
 
-    @Column(name = "picture")
     public String getPicture() {
         return picture;
     }
@@ -79,12 +66,19 @@ public class Dishes implements Serializable {
         this.picture = picture;
     }
 
-    @Column(name = "cafe_id")
-    public Long getCafeId() {
-        return cafeId;
+    public static DishRO parseDish(Dish dish) {
+        DishRO dishRO = new DishRO();
+        dishRO.setId(dish.getId());
+        dishRO.setName(dish.getName());
+        dishRO.setDescription(dish.getDescription());
+        dishRO.setPrice(dish.getPrice());
+        dishRO.setCurrency(dish.getCurrency());
+        dishRO.setPicture(dish.getPicture());
+        return dishRO;
     }
 
-    public void setCafeId(Long cafeId) {
-        this.cafeId = cafeId;
+    public static List<DishRO> parseDishes(List<Dish> dishes) {
+        return dishes.stream().map(DishRO::parseDish).collect(Collectors.toList());
     }
+
 }

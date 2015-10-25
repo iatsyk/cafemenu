@@ -1,6 +1,7 @@
 package tk.iatsyk.handler;
 
-import tk.iatsyk.entities.Cafe;
+import tk.iatsyk.entities.businessentities.Cafe;
+import tk.iatsyk.entities.representationobjects.CafeRO;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface CafeHandler {
 
     long save(Cafe cafe);
 
-    List<Cafe> getAllCafes();
+    List<CafeRO> getAllCafes();
 }

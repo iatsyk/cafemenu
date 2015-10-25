@@ -5,7 +5,8 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import tk.iatsyk.dao.CafeDao;
-import tk.iatsyk.entities.Cafe;
+import tk.iatsyk.entities.businessentities.Cafe;
+import tk.iatsyk.entities.representationobjects.CafeRO;
 
 import java.util.List;
 
@@ -45,8 +46,9 @@ public class CafeDaoImpl implements CafeDao {
     }
 
     @Override
-    public List<Cafe> getAllCafes() {
-        return hibernateTemplate.loadAll(Cafe.class);
+    public List<CafeRO> getAllCafes() {
+        List cafes = hibernateTemplate.loadAll(Cafe.class);
+        return CafeRO.parseCafes(cafes);
     }
 
 }

@@ -1,6 +1,7 @@
 package tk.iatsyk.dao;
 
-import tk.iatsyk.entities.Dishes;
+import tk.iatsyk.entities.businessentities.Dish;
+import tk.iatsyk.entities.representationobjects.DishRO;
 
 import java.util.List;
 
@@ -10,13 +11,13 @@ import java.util.List;
  */
 public interface DishesDao {
 
-    long save(Dishes dishes);
+    long save(Dish dishes);
 
-    void update(Dishes dishes);
+    void update(Dish dishes);
 
-    void delete(Dishes dishes);
+    void delete(Dish dishes);
 
-    Dishes findById(long dishesId);
+    Dish findById(long dishesId);
 
-    List<Dishes> findAllDishesByCafeId(Long cafeId);
+    List<DishRO> findAllDishesByCafeId(Long cafeId);
 }

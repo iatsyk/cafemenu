@@ -2,9 +2,9 @@ package tk.iatsyk.handler.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import tk.iatsyk.dao.CafeDao;
-import tk.iatsyk.entities.Cafe;
+import tk.iatsyk.entities.businessentities.Cafe;
+import tk.iatsyk.entities.representationobjects.CafeRO;
 import tk.iatsyk.handler.CafeHandler;
 import tk.iatsyk.repository.CafeRepository;
 
@@ -34,7 +34,7 @@ public class CafeHandlerImpl implements CafeHandler {
     }
 
     @Override
-    public List<Cafe> getAllCafes() {
+    public List<CafeRO> getAllCafes() {
         return cafeDao.getAllCafes();
     }
 

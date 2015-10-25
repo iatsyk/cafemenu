@@ -3,7 +3,7 @@ package tk.iatsyk.handler.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import tk.iatsyk.dao.DishesDao;
-import tk.iatsyk.entities.Dishes;
+import tk.iatsyk.entities.representationobjects.DishRO;
 import tk.iatsyk.handler.DishesHandler;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class DishesHandlerImpl implements DishesHandler {
     private DishesDao dishesDao;
 
     @Override
-    public List<Dishes> findAllDishesByCafeId(Long cafeId) {
+    public List<DishRO> findAllDishesByCafeId(Long cafeId) {
         return dishesDao.findAllDishesByCafeId(cafeId);
     }
 

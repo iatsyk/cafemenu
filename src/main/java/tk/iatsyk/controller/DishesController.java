@@ -2,7 +2,7 @@ package tk.iatsyk.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tk.iatsyk.entities.Dishes;
+import tk.iatsyk.entities.representationobjects.DishRO;
 import tk.iatsyk.handler.DishesHandler;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class DishesController {
     @RequestMapping(method = RequestMethod.GET, path = "/dishes")
     public
     @ResponseBody
-    List<Dishes> findAllDishesByCafeId(@RequestParam Long cafeId) {
+    List<DishRO> findAllDishesByCafeId(@RequestParam Long cafeId) {
         return dishesHandler.findAllDishesByCafeId(cafeId);
     }
 
