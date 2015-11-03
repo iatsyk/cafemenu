@@ -2,7 +2,7 @@
 
 Requirements: 
 
-**Java 8+  
+**Java JDK 1.8+  
 Gradle 2.7+  
 MySQL 5.6+**  
 
