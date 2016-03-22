@@ -8,7 +8,7 @@
 
     <changeSet author="vovaiatsyk" id="1">
         <createTable tableName="cafe">
-            <column name="uuid" type="BIGINT(20)" autoIncrement="true">
+            <column name="uuid" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="name" type="VARCHAR(50)">
@@ -27,7 +27,7 @@
     </changeSet>
     <changeSet author="vovaiatsyk" id="2">
         <createTable tableName="dishes">
-            <column name="uuid" type="BIGINT(20)" autoIncrement="true">
+            <column name="uuid" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="name" type="VARCHAR(50)">
@@ -56,7 +56,7 @@
     </changeSet>
     <changeSet author="vovaiatsyk" id="5">
         <addColumn tableName="dishes">
-            <column name="cafe_id" type="BIGINT(20)"/>
+            <column name="cafe_id" type="BIGINT"/>
         </addColumn>
     </changeSet>
 

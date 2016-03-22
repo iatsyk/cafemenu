@@ -29,6 +29,8 @@ dependencies {
 
     compile("org.hibernate:hibernate-core:$hibernateVersion")
 
+    compile("mysql:mysql-connector-java:$mySQLDriverVersion")
+
     compile("org.postgresql:postgresql:9.4.1208")
 
 }
