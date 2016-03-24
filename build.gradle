@@ -69,3 +69,7 @@ liquibase {
     }
     runList = 'main'
 }
+
+task stage {
+    dependsOn installDist
+}
