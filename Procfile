@@ -1,1 +1,1 @@
-web: build/scripts/cafemenu
+web: /build/install/cafemenu/bin/cafemenu

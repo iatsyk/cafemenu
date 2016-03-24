@@ -2,6 +2,7 @@
 bin/
 target/
 logs/
+build/
 .idea/
 .gradle/
 */*.iml
