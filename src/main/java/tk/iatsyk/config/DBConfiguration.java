@@ -1,18 +1,20 @@
 package tk.iatsyk.config;
 
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
 
@@ -25,14 +27,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class DBConfiguration {
 
-    @Value("${jdbcDriverClassName}")
-    private String driverClassName;
-    @Value("${jdbcDatabaseUrl}")
+    @Value("${DATABASE_URL}")
     private String databaseUrl;
-    @Value("${jdbcUsername}")
-    private String username;
-    @Value("${jdbcPassword}")
-    private String password;
 
     @Value("${hibernate.dialect}")
     private String hibernateDialect;
@@ -40,13 +36,19 @@ public class DBConfiguration {
     private String hibernateShowSql;
 
     @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        driverManagerDataSource.setDriverClassName(driverClassName);
-        driverManagerDataSource.setUrl(databaseUrl);
-        driverManagerDataSource.setUsername(username);
-        driverManagerDataSource.setPassword(password);
-        return driverManagerDataSource;
+    public DataSource dataSource() throws URISyntaxException {
+        URI dbUri = new URI(databaseUrl);
+
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(dbUrl);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
+
+        return basicDataSource;
     }
 
     private Properties hibernateProperties() {
@@ -58,7 +60,7 @@ public class DBConfiguration {
     }
 
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
+    public LocalSessionFactoryBean sessionFactory() throws URISyntaxException {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("tk.iatsyk.entities");
@@ -67,7 +69,7 @@ public class DBConfiguration {
     }
 
     @Bean
-    public HibernateTemplate hibernateTemplate() {
+    public HibernateTemplate hibernateTemplate() throws URISyntaxException {
         return new HibernateTemplate(sessionFactory().getObject());
     }
 

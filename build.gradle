@@ -7,7 +7,7 @@ buildscript {
     dependencies {
         classpath files('build/classes/main/')
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
-        classpath("org.postgresql:postgresql:$PostgresDriverVersion")
+        classpath("org.postgresql:postgresql:$postgresVersion")
     }
 }
 
@@ -36,8 +36,8 @@ dependencies {
 
     compile("org.hibernate:hibernate-core:$hibernateVersion")
 
-    compile("org.postgresql:postgresql:9.4.1208")
-
+    compile("org.postgresql:postgresql:$postgresVersion")
+    compile("org.apache.commons:commons-dbcp2:2.1.1")
 }
 
 def loadProperties(String sourceFileName) {
@@ -60,9 +60,11 @@ liquibase {
         main {
             changeLogFile liquibaseChangeLogFile
             driver jdbcDriverClassName
-            url jdbcDatabaseUrl
-            username jdbcUsername
-            password jdbcPassword
+
+            def databaseUrl = DATABASE_URL.split(':')
+            url 'jdbc:postgresql://' + databaseUrl[2].split('@')[1] + ':5432/' + databaseUrl[3].split('/')[1]
+            username databaseUrl[1].replace('/','')
+            password databaseUrl[2].split('@')[0]
         }
     }
     runList = 'main'
