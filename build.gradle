@@ -1,9 +1,8 @@
 buildscript {
     repositories {
-        files 'build/classes/main'
+        mavenCentral()
     }
     dependencies {
-        classpath files('build/classes/main/')
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         classpath("org.postgresql:postgresql:$PostgresDriverVersion")
     }
@@ -15,6 +14,10 @@ plugins {
 }
 
 apply plugin: 'spring-boot'
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
     compile("org.springframework:spring-core:$springVersion")
