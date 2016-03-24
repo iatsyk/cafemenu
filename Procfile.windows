@@ -1,1 +1,1 @@
-web: build/install/cafemenu/bin/cafemenu.bat
+web: build/scripts/cafemenu.bat
