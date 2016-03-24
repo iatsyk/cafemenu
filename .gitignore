@@ -9,7 +9,7 @@ build/
 *.iml
 /*.idea
 /*.iml
-*.*~
+*~
 
 # Package Files #
 *.jar
