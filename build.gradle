@@ -46,7 +46,9 @@ def loadProperties(String sourceFileName) {
     if (propFile.canRead()) {
         config.load(new FileInputStream(propFile))
         config.each { property ->
-            ext[property.key] == null ? ext[property.key] = property.value :;
+            if (!ext.hasProperty(property.key)) {
+                ext[property.key] = property.value
+            };
         }
     } else {
         println "can't read file " + propFile
