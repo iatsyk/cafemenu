@@ -46,11 +46,7 @@ def loadProperties(String sourceFileName) {
     if (propFile.canRead()) {
         config.load(new FileInputStream(propFile))
         config.each { property ->
-            if (!ext.hasProperty(property.key)) {
-                ext[property.key] = property.value
-            } else {
-                println ext[property.key]
-            }
+            ext[property.key] = property.value
         }
     } else {
         println "can't read file " + propFile
@@ -64,9 +60,8 @@ liquibase {
         main {
             changeLogFile liquibaseChangeLogFile
             driver jdbcDriverClassName
-            println 'DATABASE_URL: ' + DATABASE_URL
 
-            def databaseUrl = DATABASE_URL.split(':')
+            def databaseUrl = System.getenv('DATABASE_URL').split(':')
             url 'jdbc:postgresql://' + databaseUrl[2].split('@')[1] + ':5432/' + databaseUrl[3].split('/')[1]
             username databaseUrl[1].replace('/', '')
             password databaseUrl[2].split('@')[0]
