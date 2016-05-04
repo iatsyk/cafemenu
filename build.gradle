@@ -61,10 +61,11 @@ liquibase {
             changeLogFile liquibaseChangeLogFile
             driver jdbcDriverClassName
 
+            def databaseUrl;
             if (System.getenv('DATABASE_URL') == null) {
-                def databaseUrl = 'postgres://cafe:cafe@localhost:5432/cafe'.split(':')
+                databaseUrl = 'postgres://cafe:cafe@localhost:5432/cafe'.split(':')
             } else {
-                def databaseUrl = System.getenv('DATABASE_URL').split(':')
+                databaseUrl = System.getenv('DATABASE_URL').split(':')
             }
             url 'jdbc:postgresql://' + databaseUrl[2].split('@')[1] + ':5432/' + databaseUrl[3].split('/')[1]
             username databaseUrl[1].replace('/', '')
