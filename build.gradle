@@ -38,6 +38,7 @@ dependencies {
 
     compile("org.postgresql:postgresql:$postgresVersion")
     compile("org.apache.commons:commons-dbcp2:2.1.1")
+    compile("junit:junit:4.12")
 }
 
 def loadProperties(String sourceFileName) {
